@@ -1,0 +1,28 @@
+{
+  "name": "it_college_web",
+  "version": "1.0.0",
+  "description": "Лабораторні роботи з навчальної дисципліни «Web-програмування» — ВСП ФКІТ НУ «Львівська політехніка»",
+  "main": "index.html",
+  "scripts": {
+    "build": "sass lab3/scss:lab3/css",
+    "build:lab3": "sass lab3/scss:lab3/css",
+    "watch:lab3": "sass --watch lab3/scss:lab3/css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joshbuysell/it_college_web.git"
+  },
+  "keywords": [
+    "lpnu",
+    "fkit",
+    "web-programming",
+    "scss",
+    "grid",
+    "responsive"
+  ],
+  "author": "Віктор Цвик (КН-310)",
+  "license": "MIT",
+  "devDependencies": {
+    "sass": "^1.85.1"
+  }
+}
