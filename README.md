@@ -5,7 +5,8 @@
 > **Навчальний заклад:** ВСП «Фаховий коледж інформаційних технологій НУ "Львівська політехніка"»  
 > **Дисципліна:** Web-програмування (3-й курс, 2026)  
 > **Live Demo (GitHub Pages):** [https://joshbuysell.github.io/it_college_web/](https://joshbuysell.github.io/it_college_web/)  
-> **Лабораторна робота №3:** [https://joshbuysell.github.io/it_college_web/lab3/](https://joshbuysell.github.io/it_college_web/lab3/)
+> **Лабораторна робота №3:** [https://joshbuysell.github.io/it_college_web/lab3/](https://joshbuysell.github.io/it_college_web/lab3/)  
+> **Лабораторна робота №4:** [https://joshbuysell.github.io/it_college_web/lab4/](https://joshbuysell.github.io/it_college_web/lab4/)
 
 ---
 
@@ -16,14 +17,14 @@ it_college_web/
 ├── index.html                  # Головна сторінка-портал з навігацією по всіх роботах
 ├── styles.css                  # Стилізація головної сторінки-хабу
 ├── package.json                # Конфігурація npm та компілятор Dart Sass
-├── lab3/                       # Лабораторна робота №3
-│   ├── index.html              # Верстка хедера та блоку новин НУ «ЛП» з CSS Grid
-│   ├── scss/
-│   │   └── styles.scss         # SCSS джерело зі змінними, мапою $breakpoints та міксином respond-to
-│   ├── css/
-│   │   ├── styles.css          # Скомпільований CSS
-│   │   └── styles.css.map      # Source Map для відладки
-│   └── images/                 # Реальні зображення новин та SVG-логотип Політехніки
+├── lab3/                       # Лабораторна робота №3 (CSS Grid та SCSS)
+│   ├── index.html
+│   ├── scss/styles.scss
+│   ├── css/styles.css
+│   └── images/
+├── lab4/                       # Лабораторна робота №4 (Функції у JavaScript)
+│   ├── index.html
+│   └── main.js
 └── README.md
 ```
 

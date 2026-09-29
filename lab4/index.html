@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Лабораторна робота №4 — Робота з функціями у JavaScript</title>
+  <link rel="stylesheet" href="../styles.css">
+  <style>
+    .back-link {
+      display: inline-block;
+      color: #fff;
+      text-decoration: none;
+      font-size: 14px;
+      margin-bottom: 12px;
+      opacity: 0.9;
+    }
+    .back-link:hover {
+      text-decoration: underline;
+      opacity: 1;
+    }
+    .variant-card {
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 20px 24px;
+      margin-bottom: 20px;
+    }
+    .variant-card h2 {
+      margin-top: 0;
+      margin-bottom: 14px;
+      font-size: 18px;
+      color: #312783;
+      border-bottom: 1px solid #e2e8f0;
+      padding-bottom: 8px;
+    }
+    .task-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .task-list li {
+      padding: 8px 0;
+      border-bottom: 1px dashed #e2e8f0;
+      font-size: 15px;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .task-list li:last-child {
+      border-bottom: none;
+    }
+    .code-call {
+      font-family: monospace;
+      background: #f1f5f9;
+      padding: 2px 6px;
+      border-radius: 4px;
+      color: #1e293b;
+    }
+    .result-val {
+      font-family: monospace;
+      font-weight: 600;
+      color: #312783;
+    }
+    .hint {
+      font-size: 14px;
+      color: #64748b;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <a href="../index.html" class="back-link">← На головну</a>
+      <h1>Лабораторна робота №4</h1>
+      <p class="subtitle">Робота з функціями у JavaScript</p>
+      <p class="author">Студент: <strong>Цвик Віктор</strong> | Група: <strong>КН-310</strong></p>
+    </div>
+  </header>
+
+  <main class="container">
+    <p class="hint">Результати виконання також виведено у консоль браузера (Developer Tools → Console, <code>F12</code>).</p>
+
+    <section class="variant-card">
+      <h2>Варіант 1</h2>
+      <ul class="task-list" id="variant1-list"></ul>
+    </section>
+
+    <section class="variant-card">
+      <h2>Варіант 2</h2>
+      <ul class="task-list" id="variant2-list"></ul>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>© 2026 Цвик Віктор (КН-310). <a href="../index.html">На головну</a></p>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
