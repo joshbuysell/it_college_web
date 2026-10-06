@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Лабораторні роботи з навчальної дисципліни «Web-програмування» — ВСП ФКІТ НУ «Львівська політехніка»",
   "main": "index.html",
+  "type": "module",
   "scripts": {
     "build": "sass lab3/scss:lab3/css",
     "build:lab3": "sass lab3/scss:lab3/css",

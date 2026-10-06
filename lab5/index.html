@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Лабораторна робота №5 — Проектування системи класів</title>
+  <link rel="stylesheet" href="../styles.css">
+  <style>
+    .back-link {
+      display: inline-block;
+      color: #fff;
+      text-decoration: none;
+      font-size: 14px;
+      margin-bottom: 12px;
+      opacity: 0.9;
+    }
+    .back-link:hover {
+      text-decoration: underline;
+      opacity: 1;
+    }
+    .variant-card {
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 20px 24px;
+      margin-bottom: 20px;
+    }
+    .variant-card h2 {
+      margin-top: 0;
+      margin-bottom: 14px;
+      font-size: 18px;
+      color: #312783;
+      border-bottom: 1px solid #e2e8f0;
+      padding-bottom: 8px;
+    }
+    .result-block p {
+      margin: 8px 0;
+      font-size: 15px;
+    }
+    .result-block ul {
+      margin: 6px 0 16px 20px;
+      padding: 0;
+    }
+    .result-block li {
+      margin-bottom: 4px;
+      font-size: 15px;
+    }
+    .hint {
+      font-size: 14px;
+      color: #64748b;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <a href="../index.html" class="back-link">← На головну</a>
+      <h1>Лабораторна робота №5</h1>
+      <p class="subtitle">Проектування системи класів для онлайн-магазину</p>
+      <p class="author">Студент: <strong>Цвик Віктор</strong> | Група: <strong>КН-310</strong></p>
+    </div>
+  </header>
+
+  <main class="container">
+    <p class="hint">Результати роботи класів та методів виведено у консоль розробника (Developer Tools → Console, <code>F12</code>) та нижче на сторінці.</p>
+
+    <section class="variant-card">
+      <h2>Варіант 2: Онлайн-магазин (Product, User, Customer, Order)</h2>
+      <div id="v2-output"></div>
+    </section>
+
+    <section class="variant-card">
+      <h2>Варіант 1: Система управління курсами (Person, Course, Teacher, Student)</h2>
+      <div id="v1-output"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>© 2026 Цвик Віктор (КН-310). <a href="../index.html">На головну</a></p>
+    </div>
+  </footer>
+
+  <script type="module" src="index.js"></script>
+</body>
+</html>
