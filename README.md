@@ -7,7 +7,8 @@
 > **Live Demo (GitHub Pages):** [https://joshbuysell.github.io/it_college_web/](https://joshbuysell.github.io/it_college_web/)  
 > **Лабораторна робота №3:** [https://joshbuysell.github.io/it_college_web/lab3/](https://joshbuysell.github.io/it_college_web/lab3/)  
 > **Лабораторна робота №4:** [https://joshbuysell.github.io/it_college_web/lab4/](https://joshbuysell.github.io/it_college_web/lab4/)  
-> **Лабораторна робота №5:** [https://joshbuysell.github.io/it_college_web/lab5/](https://joshbuysell.github.io/it_college_web/lab5/)
+> **Лабораторна робота №5:** [https://joshbuysell.github.io/it_college_web/lab5/](https://joshbuysell.github.io/it_college_web/lab5/)  
+> **Лабораторна робота №6:** [https://joshbuysell.github.io/it_college_web/lab6/](https://joshbuysell.github.io/it_college_web/lab6/)
 
 ---
 
@@ -30,6 +31,11 @@ it_college_web/
 │   ├── index.html
 │   ├── index.js
 │   └── models/
+├── lab6/                       # Лабораторна робота №6 (DOM, події, TODO список)
+│   ├── index.html
+│   ├── css/style.css
+│   ├── js/index.js
+│   └── img/sprite.svg
 └── README.md
 ```
 
