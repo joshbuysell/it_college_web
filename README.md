@@ -9,7 +9,8 @@
 > **Лабораторна робота №4:** [https://joshbuysell.github.io/it_college_web/lab4/](https://joshbuysell.github.io/it_college_web/lab4/)  
 > **Лабораторна робота №5:** [https://joshbuysell.github.io/it_college_web/lab5/](https://joshbuysell.github.io/it_college_web/lab5/)  
 > **Лабораторна робота №6:** [https://joshbuysell.github.io/it_college_web/lab6/](https://joshbuysell.github.io/it_college_web/lab6/)  
-> **Лабораторна робота №7:** [https://joshbuysell.github.io/it_college_web/lab7/](https://joshbuysell.github.io/it_college_web/lab7/)
+> **Лабораторна робота №7:** [https://joshbuysell.github.io/it_college_web/lab7/](https://joshbuysell.github.io/it_college_web/lab7/)  
+> **Лабораторна робота №8:** [https://joshbuysell.github.io/it_college_web/lab8/](https://joshbuysell.github.io/it_college_web/lab8/)
 
 ---
 
@@ -42,6 +43,19 @@ it_college_web/
 │   ├── css/style.css
 │   ├── js/index.js
 │   └── img/sprite.svg
+├── lab8/                       # Лабораторна робота №8 (TypeScript, Webpack, Repository Pattern)
+│   ├── index.html
+│   ├── package.json
+│   ├── tsconfig.json
+│   ├── webpack.config.js
+│   ├── dist/bundle.js
+│   ├── img/sprite.svg
+│   └── src/
+│       ├── index.ts
+│       ├── models/Todo.ts
+│       ├── repositories/TodoRepository.ts
+│       ├── repositories/ApiTodoRepository.ts
+│       └── scss/style.scss
 └── README.md
 ```
 
