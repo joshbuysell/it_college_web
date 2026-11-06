@@ -10,7 +10,8 @@
 > **Лабораторна робота №5:** [https://joshbuysell.github.io/it_college_web/lab5/](https://joshbuysell.github.io/it_college_web/lab5/)  
 > **Лабораторна робота №6:** [https://joshbuysell.github.io/it_college_web/lab6/](https://joshbuysell.github.io/it_college_web/lab6/)  
 > **Лабораторна робота №7:** [https://joshbuysell.github.io/it_college_web/lab7/](https://joshbuysell.github.io/it_college_web/lab7/)  
-> **Лабораторна робота №8:** [https://joshbuysell.github.io/it_college_web/lab8/](https://joshbuysell.github.io/it_college_web/lab8/)
+> **Лабораторна робота №8:** [https://joshbuysell.github.io/it_college_web/lab8/](https://joshbuysell.github.io/it_college_web/lab8/)  
+> **Лабораторна робота №9:** [https://joshbuysell.github.io/it_college_web/lab9/dist/lab9/browser/](https://joshbuysell.github.io/it_college_web/lab9/dist/lab9/browser/)
 
 ---
 
@@ -56,6 +57,22 @@ it_college_web/
 │       ├── repositories/TodoRepository.ts
 │       ├── repositories/ApiTodoRepository.ts
 │       └── scss/style.scss
+├── lab9/                       # Лабораторна робота №9 (Angular 21 SPA, Signals, RxJS, HttpClient)
+│   ├── index.html
+│   ├── package.json
+│   ├── angular.json
+│   ├── dist/lab9/browser/
+│   └── src/
+│       ├── index.html
+│       ├── main.ts
+│       ├── styles.scss
+│       └── app/
+│           ├── app.ts
+│           ├── app.html
+│           ├── app.scss
+│           ├── app.config.ts
+│           ├── models/todo.model.ts
+│           └── services/todo.service.ts
 └── README.md
 ```
 
