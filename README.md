@@ -11,7 +11,8 @@
 > **Лабораторна робота №6:** [https://joshbuysell.github.io/it_college_web/lab6/](https://joshbuysell.github.io/it_college_web/lab6/)  
 > **Лабораторна робота №7:** [https://joshbuysell.github.io/it_college_web/lab7/](https://joshbuysell.github.io/it_college_web/lab7/)  
 > **Лабораторна робота №8:** [https://joshbuysell.github.io/it_college_web/lab8/](https://joshbuysell.github.io/it_college_web/lab8/)  
-> **Лабораторна робота №9:** [https://joshbuysell.github.io/it_college_web/lab9/dist/lab9/browser/](https://joshbuysell.github.io/it_college_web/lab9/dist/lab9/browser/)
+> **Лабораторна робота №9:** [https://joshbuysell.github.io/it_college_web/lab9/dist/lab9/browser/](https://joshbuysell.github.io/it_college_web/lab9/dist/lab9/browser/)  
+> **Лабораторна робота №10:** [https://joshbuysell.github.io/it_college_web/lab10/](https://joshbuysell.github.io/it_college_web/lab10/)
 
 ---
 
@@ -73,6 +74,11 @@ it_college_web/
 │           ├── app.config.ts
 │           ├── models/todo.model.ts
 │           └── services/todo.service.ts
+├── lab10/                      # Лабораторна робота №10 (Node.js HTTP Server, REST API, CORS)
+│   ├── index.html
+│   ├── package.json
+│   ├── data.js
+│   └── server.js
 └── README.md
 ```
 

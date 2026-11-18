@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Лабораторна робота №10 — Створення серверного застосунку на Node.js</title>
+  <link rel="stylesheet" href="../styles.css">
+  <style>
+    .back-link {
+      display: inline-block;
+      color: #fff;
+      text-decoration: none;
+      font-size: 14px;
+      margin-bottom: 12px;
+      opacity: 0.9;
+    }
+    .back-link:hover {
+      text-decoration: underline;
+      opacity: 1;
+    }
+    .variant-card {
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    }
+    .variant-card h2 {
+      margin-top: 0;
+      margin-bottom: 14px;
+      font-size: 18px;
+      color: #312783;
+      border-bottom: 1px solid #e2e8f0;
+      padding-bottom: 8px;
+    }
+    .endpoint-badge {
+      display: inline-block;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 12px;
+      margin-right: 8px;
+    }
+    .badge-get { background: #e0f2fe; color: #0284c7; }
+    .badge-options { background: #fef3c7; color: #d97706; }
+    .badge-status { background: #dcfce7; color: #16a34a; }
+    .code-block {
+      background: #1e293b;
+      color: #f8fafc;
+      padding: 16px;
+      border-radius: 6px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 13px;
+      overflow-x: auto;
+      margin: 12px 0;
+      line-height: 1.5;
+    }
+    .endpoint-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .endpoint-name {
+      font-family: monospace;
+      font-weight: 600;
+      color: #1e293b;
+    }
+    .btn-test {
+      background: #312783;
+      color: #fff;
+      border: none;
+      padding: 6px 14px;
+      border-radius: 4px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn-test:hover {
+      background: #231b66;
+    }
+    .api-preview {
+      margin-top: 15px;
+      display: none;
+    }
+    .api-preview.active {
+      display: block;
+    }
+    .instructions-list {
+      padding-left: 20px;
+      margin: 12px 0;
+    }
+    .instructions-list li {
+      margin-bottom: 6px;
+      font-size: 15px;
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <div style="display: flex; justify-content: center; gap: 16px; margin-bottom: 12px;">
+        <a href="../index.html" class="back-link" style="margin-bottom: 0;">← На головну</a>
+        <a href="https://github.com/joshbuysell/it_college_web/tree/main/lab10" target="_blank" rel="noopener noreferrer" class="back-link" style="margin-bottom: 0;">Код на GitHub ↗</a>
+      </div>
+      <h1>Лабораторна робота №10</h1>
+      <p class="subtitle">Створення серверного застосунку на Node.js</p>
+      <p class="author">Студент: <strong>Цвик Віктор</strong> | Група: <strong>КН-310</strong> (ID #28)</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="variant-card">
+      <h2>1. Опис серверного застосунку</h2>
+      <p>
+        У цій роботі реалізовано автономний HTTP-сервер на базі вбудованого модуля <strong>Node.js <code>http</code></strong> з використанням стандартів сучасних ES-модулів (<code>"type": "module"</code>).
+        Сервер налаштовано для надання REST API даних для Angular та клієнтських веб-застосунків.
+      </p>
+      <ul class="instructions-list">
+        <li><strong>Event Loop та неблокуюче I/O:</strong> асинхронна архітектура обробки клієнтських запитів.</li>
+        <li><strong>CORS політика:</strong> додано обов'язкові заголовки <code>Access-Control-Allow-Origin: *</code>, дозволено методи GET, POST, OPTIONS, PUT, DELETE та обробку preflight запитів.</li>
+        <li><strong>Власні модулі:</strong> збереження та експорт даних організовано у файлі <code>data.js</code> відповідно до інтерфейсу <code>Todo</code>.</li>
+      </ul>
+    </section>
+
+    <section class="variant-card">
+      <h2>2. Маршрутизація сервера (API Endpoints)</h2>
+      
+      <div class="endpoint-row">
+        <div>
+          <span class="endpoint-badge badge-get">GET</span>
+          <span class="endpoint-name">/</span>
+          <span style="color: #64748b; font-size: 13px; margin-left: 8px;">— перевірка працездатності (HTML статус)</span>
+        </div>
+        <button class="btn-test" onclick="testEndpoint('root')">Переглянути</button>
+      </div>
+
+      <div class="endpoint-row">
+        <div>
+          <span class="endpoint-badge badge-get">GET</span>
+          <span class="endpoint-name">/api/v1/todoItem</span>
+          <span style="color: #64748b; font-size: 13px; margin-left: 8px;">— список завдань у форматі JSON</span>
+        </div>
+        <button class="btn-test" onclick="testEndpoint('todos')">Отримати JSON</button>
+      </div>
+
+      <div class="endpoint-row">
+        <div>
+          <span class="endpoint-badge badge-options">OPTIONS</span>
+          <span class="endpoint-name">/api/v1/todoItem</span>
+          <span style="color: #64748b; font-size: 13px; margin-left: 8px;">— обробка попередніх preflight CORS-запитів (HTTP 204)</span>
+        </div>
+        <span class="endpoint-badge badge-status">HTTP 204</span>
+      </div>
+
+      <div id="previewBox" class="api-preview">
+        <h4 style="margin-bottom: 6px; color: #312783;">Результат відповіді сервера:</h4>
+        <pre class="code-block" id="outputJson"></pre>
+      </div>
+    </section>
+
+    <section class="variant-card">
+      <h2>3. Інструкція із запуску та деплою</h2>
+      <p><strong>Локальний запуск:</strong></p>
+      <div class="code-block"># Перехід у директорію lab10
+cd lab10
+
+# Запуск у звичайному режимі
+npm start
+
+# Запуск у режимі автоматичного перезавантаження (Node.js 18+)
+npm run dev</div>
+
+      <p style="margin-top: 16px;"><strong>Параметри для розгортання на Render.com:</strong></p>
+      <ul class="instructions-list">
+        <li><strong>Service Type:</strong> Web Service (Build and deploy from a Git repository)</li>
+        <li><strong>Root Directory:</strong> <code>lab10</code></li>
+        <li><strong>Runtime:</strong> Node</li>
+        <li><strong>Build Command:</strong> <code>npm install</code></li>
+        <li><strong>Start Command:</strong> <code>npm start</code></li>
+        <li><strong>Port:</strong> налаштовано через <code>process.env.PORT || 3000</code></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>© 2026 Цвик Віктор (КН-310). <a href="../index.html">На головну</a> | <a href="https://github.com/joshbuysell/it_college_web" target="_blank">Репозиторій GitHub</a></p>
+    </div>
+  </footer>
+
+  <a href="https://github.com/joshbuysell/it_college_web/tree/main/lab10" target="_blank" rel="noopener noreferrer" class="github-fab" title="Вихідний код на GitHub">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+    <span>Код на GitHub</span>
+  </a>
+
+  <script>
+    const sampleTodos = [
+      {
+        id: "1",
+        userId: 28,
+        title: "Вивчити основи Node.js",
+        description: "Розібратися з модулем http та npm",
+        tag: "Навчання",
+        deadline: "2026-12-01",
+        createdAt: 1700000000,
+        isDone: true
+      },
+      {
+        id: "2",
+        userId: 28,
+        title: "Створити власний API",
+        description: "Написати сервер, що віддає JSON",
+        tag: "Робота",
+        deadline: "2026-12-05",
+        createdAt: 1700005000,
+        isDone: false
+      },
+      {
+        id: "3",
+        userId: 28,
+        title: "Налаштувати CORS та деплой на Render",
+        description: "Підготувати серверну частину для взаємодії з Angular",
+        tag: "Навчання",
+        deadline: "2026-12-10",
+        createdAt: 1700010000,
+        isDone: false
+      }
+    ];
+
+    function testEndpoint(type) {
+      const box = document.getElementById('previewBox');
+      const out = document.getElementById('outputJson');
+      box.classList.add('active');
+
+      if (type === 'root') {
+        out.textContent = `<!DOCTYPE html>\n<html>\n  <h1>Мій перший сервер на Node.js працює!</h1>\n  <p>Лабораторна робота №10 — Цвик Віктор (КН-310)</p>\n</html>`;
+      } else if (type === 'todos') {
+        out.textContent = JSON.stringify(sampleTodos, null, 2);
+      }
+    }
+  </script>
+</body>
+</html>
