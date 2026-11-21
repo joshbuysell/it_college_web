@@ -77,15 +77,33 @@
       background: #312783;
       color: #fff;
       border: none;
-      padding: 6px 14px;
-      border-radius: 4px;
+      padding: 8px 16px;
+      border-radius: 6px;
       font-size: 13px;
       font-weight: 600;
       cursor: pointer;
-      transition: background 0.2s;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
     }
     .btn-test:hover {
       background: #231b66;
+      transform: translateY(-1px);
+    }
+    .btn-test-alt {
+      background: #f8fafc;
+      color: #312783;
+      border: 1px solid #cbd5e1;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-test-alt:hover {
+      background: #e2e8f0;
     }
     .api-preview {
       margin-top: 15px;
@@ -101,6 +119,44 @@
     .instructions-list li {
       margin-bottom: 6px;
       font-size: 15px;
+    }
+    .server-switcher {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+      background: #f1f5f9;
+      padding: 12px 16px;
+      border-radius: 8px;
+    }
+    .server-input {
+      flex: 1;
+      min-width: 240px;
+      padding: 8px 12px;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      font-family: monospace;
+      font-size: 13px;
+    }
+    .status-badge-live {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      background: #ecfdf5;
+      color: #065f46;
+      border: 1px solid #a7f3d0;
+      border-radius: 50px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .dot-live {
+      width: 8px;
+      height: 8px;
+      background: #10b981;
+      border-radius: 50%;
+      box-shadow: 0 0 6px #10b981;
     }
   </style>
 </head>
@@ -125,68 +181,82 @@
         Сервер налаштовано для надання REST API даних для Angular та клієнтських веб-застосунків.
       </p>
       <ul class="instructions-list">
-        <li><strong>Event Loop та неблокуюче I/O:</strong> асинхронна архітектура обробки клієнтських запитів.</li>
+        <li><strong>Event Loop та неблокуюче I/O:</strong> асинхронна архітектура обробки клієнтських запитів без важких фреймворків.</li>
         <li><strong>CORS політика:</strong> додано обов'язкові заголовки <code>Access-Control-Allow-Origin: *</code>, дозволено методи GET, POST, OPTIONS, PUT, DELETE та обробку preflight запитів.</li>
-        <li><strong>Власні модулі:</strong> збереження та експорт даних організовано у файлі <code>data.js</code> відповідно до інтерфейсу <code>Todo</code>.</li>
+        <li><strong>Власні модулі:</strong> збереження та експорт даних організовано у файлі <code>data.js</code> відповідно до інтерфейсу <code>Todo</code> (userId: 28).</li>
+        <li><strong>Підтримка хмарного хостингу:</strong> підготовлено конфігурацію <code>render.yaml</code> для автоматичного розгортання на платформі Render.com.</li>
       </ul>
     </section>
 
     <section class="variant-card">
-      <h2>2. Маршрутизація сервера (API Endpoints)</h2>
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; flex-wrap: wrap; gap: 10px;">
+        <h2 style="margin-bottom: 0; border-bottom: none; padding-bottom: 0;">2. Інтерактивний тестер API (Live HTTP Client)</h2>
+        <span class="status-badge-live"><span class="dot-live"></span> CORS Ready</span>
+      </div>
+
+      <div class="server-switcher">
+        <label for="serverUrl" style="font-size: 13px; font-weight: 600; color: #334155;">Адреса сервера:</label>
+        <input type="text" id="serverUrl" class="server-input" value="http://localhost:3000" placeholder="Введіть URL сервера (http://localhost:3000 або https://...onrender.com)">
+        <button type="button" class="btn-test-alt" onclick="setPreset('http://localhost:3000')">Локальний</button>
+      </div>
       
       <div class="endpoint-row">
         <div>
           <span class="endpoint-badge badge-get">GET</span>
           <span class="endpoint-name">/</span>
-          <span style="color: #64748b; font-size: 13px; margin-left: 8px;">— перевірка працездатності (HTML статус)</span>
+          <span style="color: #64748b; font-size: 13px; margin-left: 8px;">— перевірка працездатності (HTML статус сервера)</span>
         </div>
-        <button class="btn-test" onclick="testEndpoint('root')">Переглянути</button>
+        <button class="btn-test" onclick="sendRequest('/')">Виконати запит →</button>
       </div>
 
       <div class="endpoint-row">
         <div>
           <span class="endpoint-badge badge-get">GET</span>
           <span class="endpoint-name">/api/v1/todoItem</span>
-          <span style="color: #64748b; font-size: 13px; margin-left: 8px;">— список завдань у форматі JSON</span>
+          <span style="color: #64748b; font-size: 13px; margin-left: 8px;">— список завдань у форматі JSON (Todo items)</span>
         </div>
-        <button class="btn-test" onclick="testEndpoint('todos')">Отримати JSON</button>
+        <button class="btn-test" onclick="sendRequest('/api/v1/todoItem')">Отримати JSON →</button>
       </div>
 
       <div class="endpoint-row">
         <div>
           <span class="endpoint-badge badge-options">OPTIONS</span>
           <span class="endpoint-name">/api/v1/todoItem</span>
-          <span style="color: #64748b; font-size: 13px; margin-left: 8px;">— обробка попередніх preflight CORS-запитів (HTTP 204)</span>
+          <span style="color: #64748b; font-size: 13px; margin-left: 8px;">— обробка попередніх preflight CORS-запитів</span>
         </div>
-        <span class="endpoint-badge badge-status">HTTP 204</span>
+        <span class="endpoint-badge badge-status">HTTP 204 No Content</span>
       </div>
 
       <div id="previewBox" class="api-preview">
-        <h4 style="margin-bottom: 6px; color: #312783;">Результат відповіді сервера:</h4>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+          <h4 style="margin: 0; color: #312783;" id="statusHeader">Результат відповіді сервера:</h4>
+          <span id="timingBadge" style="font-size: 12px; color: #64748b;"></span>
+        </div>
         <pre class="code-block" id="outputJson"></pre>
       </div>
     </section>
 
     <section class="variant-card">
-      <h2>3. Інструкція із запуску та деплою</h2>
-      <p><strong>Локальний запуск:</strong></p>
+      <h2>3. Інструкція із запуску та деплою на Render.com</h2>
+      <p><strong>1. Локальний запуск:</strong></p>
       <div class="code-block"># Перехід у директорію lab10
 cd lab10
 
-# Запуск у звичайному режимі
+# Запуск сервера
 npm start
 
-# Запуск у режимі автоматичного перезавантаження (Node.js 18+)
+# Запуск у режимі розробки з автоперезавантаженням (Node.js 18+)
 npm run dev</div>
 
-      <p style="margin-top: 16px;"><strong>Параметри для розгортання на Render.com:</strong></p>
+      <p style="margin-top: 16px;"><strong>2. Розгортання на Render.com (через GitHub):</strong></p>
       <ul class="instructions-list">
-        <li><strong>Service Type:</strong> Web Service (Build and deploy from a Git repository)</li>
+        <li>Увійдіть на <strong>dashboard.render.com</strong> через GitHub (акаунт <code>joshbuysell</code>).</li>
+        <li>Натисніть <strong>New +</strong> ➔ <strong>Web Service</strong> ➔ виберіть репозиторій <code>it_college_web</code>.</li>
         <li><strong>Root Directory:</strong> <code>lab10</code></li>
-        <li><strong>Runtime:</strong> Node</li>
-        <li><strong>Build Command:</strong> <code>npm install</code></li>
-        <li><strong>Start Command:</strong> <code>npm start</code></li>
-        <li><strong>Port:</strong> налаштовано через <code>process.env.PORT || 3000</code></li>
+        <li><strong>Build Command:</strong> <code>npm install</code> (або залишити порожнім)</li>
+        <li><strong>Start Command:</strong> <code>node server.js</code></li>
+        <li><strong>Instance Type:</strong> <code>Free</code> ($0/mo)</li>
+        <li>Після деплою скопіюйте отриманий URL (наприклад, <code>https://it-college-lab10.onrender.com</code>) та вставте його у тестер вище для миттєвої перевірки!</li>
       </ul>
     </section>
   </main>
@@ -203,48 +273,54 @@ npm run dev</div>
   </a>
 
   <script>
-    const sampleTodos = [
-      {
-        id: "1",
-        userId: 28,
-        title: "Вивчити основи Node.js",
-        description: "Розібратися з модулем http та npm",
-        tag: "Навчання",
-        deadline: "2026-12-01",
-        createdAt: 1700000000,
-        isDone: true
-      },
-      {
-        id: "2",
-        userId: 28,
-        title: "Створити власний API",
-        description: "Написати сервер, що віддає JSON",
-        tag: "Робота",
-        deadline: "2026-12-05",
-        createdAt: 1700005000,
-        isDone: false
-      },
-      {
-        id: "3",
-        userId: 28,
-        title: "Налаштувати CORS та деплой на Render",
-        description: "Підготувати серверну частину для взаємодії з Angular",
-        tag: "Навчання",
-        deadline: "2026-12-10",
-        createdAt: 1700010000,
-        isDone: false
-      }
-    ];
+    function setPreset(url) {
+      document.getElementById('serverUrl').value = url;
+    }
 
-    function testEndpoint(type) {
+    async function sendRequest(path) {
+      const baseUrl = document.getElementById('serverUrl').value.trim().replace(/\/$/, '');
+      const fullUrl = baseUrl + path;
       const box = document.getElementById('previewBox');
       const out = document.getElementById('outputJson');
-      box.classList.add('active');
+      const statusH = document.getElementById('statusHeader');
+      const timingBadge = document.getElementById('timingBadge');
 
-      if (type === 'root') {
-        out.textContent = `<!DOCTYPE html>\n<html>\n  <h1>Мій перший сервер на Node.js працює!</h1>\n  <p>Лабораторна робота №10 — Цвик Віктор (КН-310)</p>\n</html>`;
-      } else if (type === 'todos') {
-        out.textContent = JSON.stringify(sampleTodos, null, 2);
+      box.classList.add('active');
+      statusH.textContent = `Запит до ${fullUrl}...`;
+      statusH.style.color = '#312783';
+      timingBadge.textContent = '';
+      out.textContent = '⏳ Відправка HTTP-запиту (якщо це Render, перший "холодний" старт може зайняти ~30 секунд)...';
+
+      const t0 = performance.now();
+      try {
+        const response = await fetch(fullUrl, {
+          method: 'GET',
+          headers: {
+            'Accept': 'application/json, text/html'
+          }
+        });
+
+        const elapsed = Math.round(performance.now() - t0);
+        timingBadge.textContent = `Час: ${elapsed} мс | HTTP ${response.status} ${response.statusText}`;
+
+        const contentType = response.headers.get('content-type') || '';
+        if (contentType.includes('application/json')) {
+          const data = await response.json();
+          statusH.textContent = `Успіх! HTTP ${response.status} (JSON):`;
+          statusH.style.color = '#16a34a';
+          out.textContent = JSON.stringify(data, null, 2);
+        } else {
+          const text = await response.text();
+          statusH.textContent = `Успіх! HTTP ${response.status} (HTML):`;
+          statusH.style.color = '#16a34a';
+          out.textContent = text;
+        }
+      } catch (err) {
+        const elapsed = Math.round(performance.now() - t0);
+        statusH.textContent = `Помилка запиту:`;
+        statusH.style.color = '#dc2626';
+        timingBadge.textContent = `Час: ${elapsed} мс`;
+        out.textContent = `Не вдалося підключитися до ${fullUrl}\n\nМожливі причини:\n1. Якщо це локальний сервер: переконайтеся, що ви запустили "npm start" у папці lab10.\n2. Якщо це Render: переконайтеся, що сервіс запущено і статус у Render Dashboard — "Live".\n3. Перевірте, чи дозволяє браузер звернення за вказаним протоколом.\n\nТехнічна помилка: ${err.message}`;
       }
     }
   </script>

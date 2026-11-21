@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: it-college-lab10
+    runtime: node
+    plan: free
+    rootDir: lab10
+    buildCommand: npm install
+    startCommand: node server.js
+    envVars:
+      - key: PORT
+        value: 10000

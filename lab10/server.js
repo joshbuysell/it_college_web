@@ -54,6 +54,6 @@ const server = http.createServer((req, res) => {
   }
 });
 
-server.listen(PORT, () => {
-  console.log(`Сервер успішно запущено за адресою: http://localhost:${PORT}`);
+server.listen(PORT, '0.0.0.0', () => {
+  console.log(`Сервер успішно запущено за адресою: http://0.0.0.0:${PORT}`);
 });
