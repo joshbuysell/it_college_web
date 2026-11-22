@@ -14,8 +14,12 @@ const server = http.createServer((req, res) => {
     return;
   }
 
-  if (req.url === '/' && req.method === 'GET') {
+  if (req.url === '/' && (req.method === 'GET' || req.method === 'HEAD')) {
     res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+    if (req.method === 'HEAD') {
+      res.end();
+      return;
+    }
     res.end(`
       <!DOCTYPE html>
       <html lang="uk">
@@ -45,8 +49,12 @@ const server = http.createServer((req, res) => {
       </body>
       </html>
     `);
-  } else if (req.url === '/api/v1/todoItem' && req.method === 'GET') {
+  } else if (req.url === '/api/v1/todoItem' && (req.method === 'GET' || req.method === 'HEAD')) {
     res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
+    if (req.method === 'HEAD') {
+      res.end();
+      return;
+    }
     res.end(JSON.stringify(todos));
   } else {
     res.writeHead(404, { 'Content-Type': 'application/json; charset=utf-8' });

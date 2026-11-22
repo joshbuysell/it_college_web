@@ -12,7 +12,8 @@
 > **Лабораторна робота №7:** [https://joshbuysell.github.io/it_college_web/lab7/](https://joshbuysell.github.io/it_college_web/lab7/)  
 > **Лабораторна робота №8:** [https://joshbuysell.github.io/it_college_web/lab8/](https://joshbuysell.github.io/it_college_web/lab8/)  
 > **Лабораторна робота №9:** [https://joshbuysell.github.io/it_college_web/lab9/dist/lab9/browser/](https://joshbuysell.github.io/it_college_web/lab9/dist/lab9/browser/)  
-> **Лабораторна робота №10:** [https://joshbuysell.github.io/it_college_web/lab10/](https://joshbuysell.github.io/it_college_web/lab10/)
+> **Лабораторна робота №10 (Клієнт):** [https://joshbuysell.github.io/it_college_web/lab10/](https://joshbuysell.github.io/it_college_web/lab10/)  
+> **Лабораторна робота №10 (Live Render API):** [https://it-college-lab10.onrender.com/api/v1/todoItem](https://it-college-lab10.onrender.com/api/v1/todoItem)
 
 ---
 
@@ -108,3 +109,24 @@ npm run build:lab3
 # Режим автоматичного відстеження змін (Watch Mode)
 npm run watch:lab3
 ```
+
+---
+
+## Лабораторна робота №10: «Створення серверного застосунку на Node.js»
+
+- **Тема:** Розробка власного HTTP-сервера за допомогою Node.js та створення REST API.
+- **Мета:** Ознайомитися з основами середовища виконання Node.js, принципами роботи Event Loop, модульними стандартами (ES Modules), налаштуванням CORS та розгортанням веб-сервісів на платформі хмарного хостингу Render.com.
+- **Студент:** Цвик Віктор (КН-310, `userId: 28`)
+- **Ендпоінти API:**
+  - `GET /` — HTML-сторінка перевірки стану сервера
+  - `GET /api/v1/todoItem` — повернення масиву завдань у форматі JSON
+  - `OPTIONS /api/v1/todoItem` — обробка попередніх preflight запитів CORS (HTTP 204)
+- **Хмарний хостинг (Render.com):**
+  - **Live URL:** [https://it-college-lab10.onrender.com](https://it-college-lab10.onrender.com)
+  - **API Endpoint:** [https://it-college-lab10.onrender.com/api/v1/todoItem](https://it-college-lab10.onrender.com/api/v1/todoItem)
+- **Запуск локально:**
+  ```bash
+  cd lab10
+  npm start
+  ```
+

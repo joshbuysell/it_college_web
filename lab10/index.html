@@ -196,7 +196,8 @@
 
       <div class="server-switcher">
         <label for="serverUrl" style="font-size: 13px; font-weight: 600; color: #334155;">Адреса сервера:</label>
-        <input type="text" id="serverUrl" class="server-input" value="http://localhost:3000" placeholder="Введіть URL сервера (http://localhost:3000 або https://...onrender.com)">
+        <input type="text" id="serverUrl" class="server-input" value="https://it-college-lab10.onrender.com" placeholder="Введіть URL сервера (http://localhost:3000 або https://...onrender.com)">
+        <button type="button" class="btn-test" style="background:#16a34a;" onclick="setPreset('https://it-college-lab10.onrender.com')">Render Cloud (Live)</button>
         <button type="button" class="btn-test-alt" onclick="setPreset('http://localhost:3000')">Локальний</button>
       </div>
       
@@ -237,8 +238,21 @@
     </section>
 
     <section class="variant-card">
-      <h2>3. Інструкція із запуску та деплою на Render.com</h2>
-      <p><strong>1. Локальний запуск:</strong></p>
+      <h2>3. Статус розгортання на Render.com</h2>
+      <div style="background: #f0fdf4; border: 1px solid #bbf7d0; padding: 16px; border-radius: 8px; margin-bottom: 20px;">
+        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+          <span class="status-badge-live"><span class="dot-live"></span> Сервіс активний (Live)</span>
+          <span style="font-size: 13px; color: #166534; font-weight: 600;">Web Service: it-college-lab10</span>
+        </div>
+        <p style="margin: 6px 0; font-size: 14px; color: #1e293b;">
+          Публічна адреса бекенду: <a href="https://it-college-lab10.onrender.com" target="_blank" rel="noopener noreferrer" style="color: #312783; font-weight: 600; text-decoration: underline;">https://it-college-lab10.onrender.com</a>
+        </p>
+        <p style="margin: 6px 0; font-size: 14px; color: #1e293b;">
+          Прямий REST API ендпоінт: <a href="https://it-college-lab10.onrender.com/api/v1/todoItem" target="_blank" rel="noopener noreferrer" style="color: #312783; font-weight: 600; text-decoration: underline;">https://it-college-lab10.onrender.com/api/v1/todoItem</a>
+        </p>
+      </div>
+
+      <p><strong>Локальний запуск:</strong></p>
       <div class="code-block"># Перехід у директорію lab10
 cd lab10
 
@@ -247,17 +261,6 @@ npm start
 
 # Запуск у режимі розробки з автоперезавантаженням (Node.js 18+)
 npm run dev</div>
-
-      <p style="margin-top: 16px;"><strong>2. Розгортання на Render.com (через GitHub):</strong></p>
-      <ul class="instructions-list">
-        <li>Увійдіть на <strong>dashboard.render.com</strong> через GitHub (акаунт <code>joshbuysell</code>).</li>
-        <li>Натисніть <strong>New +</strong> ➔ <strong>Web Service</strong> ➔ виберіть репозиторій <code>it_college_web</code>.</li>
-        <li><strong>Root Directory:</strong> <code>lab10</code></li>
-        <li><strong>Build Command:</strong> <code>npm install</code> (або залишити порожнім)</li>
-        <li><strong>Start Command:</strong> <code>node server.js</code></li>
-        <li><strong>Instance Type:</strong> <code>Free</code> ($0/mo)</li>
-        <li>Після деплою скопіюйте отриманий URL (наприклад, <code>https://it-college-lab10.onrender.com</code>) та вставте його у тестер вище для миттєвої перевірки!</li>
-      </ul>
     </section>
   </main>
 
@@ -323,6 +326,11 @@ npm run dev</div>
         out.textContent = `Не вдалося підключитися до ${fullUrl}\n\nМожливі причини:\n1. Якщо це локальний сервер: переконайтеся, що ви запустили "npm start" у папці lab10.\n2. Якщо це Render: переконайтеся, що сервіс запущено і статус у Render Dashboard — "Live".\n3. Перевірте, чи дозволяє браузер звернення за вказаним протоколом.\n\nТехнічна помилка: ${err.message}`;
       }
     }
+
+    // Автоматично виконуємо перевірку живого бекенду при завантаженні сторінки
+    window.addEventListener('DOMContentLoaded', () => {
+      sendRequest('/api/v1/todoItem');
+    });
   </script>
 </body>
 </html>
